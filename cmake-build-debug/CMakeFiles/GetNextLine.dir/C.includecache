@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/dderevyn/CLionProjects/GetNextLine/libft/ft_linetrim.c
+libft.h
+/Users/dderevyn/CLionProjects/GetNextLine/libft/libft.h
+
+/Users/dderevyn/CLionProjects/GetNextLine/libft/libft.h
+string.h
+-
+libc.h
+-
+
