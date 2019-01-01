@@ -51,11 +51,11 @@ static int		static_valid_n_pull(t_fd **head, char **line, int fd)
 		return (-42);
 	if (node->content[ln] == '\n' && node->content[ln + 1] == '\0')
 	{
-        static_del(node, head);
+		static_del(node, head);
 		return (1);
 	}
 	if (!(ft_linetrim(&(node->content), ln + 1)))
-        return (-1);
+		return (-1);
 	return (1);
 }
 
@@ -68,7 +68,7 @@ static t_fd		*static_store(char *content, int fd, t_fd *fdl)
 	if (!(node = (t_fd *)malloc(sizeof(t_fd))))
 		return (NULL);
 	if (!(node->content = ft_strdup(content)))
-        return (NULL);
+		return (NULL);
 	node->fd = fd;
 	node->next = fdl;
 	return (node);
@@ -77,7 +77,7 @@ static t_fd		*static_store(char *content, int fd, t_fd *fdl)
 static int		gnl_part2(char **line, ssize_t rbl, char rbuf[BUFF_SIZE + 1])
 {
 	char	*wbuf;
-	char    *tmpp;
+	char	*tmpp;
 	size_t	ln;
 
 	if (rbl == -1)
@@ -85,14 +85,14 @@ static int		gnl_part2(char **line, ssize_t rbl, char rbuf[BUFF_SIZE + 1])
 	rbuf[rbl] = '\0';
 	ln = ft_linelen(rbuf);
 	if (!(wbuf = ft_strnew(ln)))
-        return (-1);
+		return (-1);
 	ft_strncpy(wbuf, rbuf, ln);
 	tmpp = NULL;
 	if (!(tmpp = ft_strjoin(*line, wbuf)))
 		return (-1);
 	if (*line)
-        ft_strdel(line);
-    *line = tmpp;
+		ft_strdel(line);
+	*line = tmpp;
 	ft_strdel(&wbuf);
 	return (-42);
 }
@@ -106,22 +106,22 @@ int				get_next_line(const int fd, char **line)
 	size_t		ln;
 
 	if (fd < 0)
-        return (-1);
+		return (-1);
 	if ((retflag = static_valid_n_pull(&fdl, line, fd)) != -42)
 		return (retflag);
 	while ((rbl = read(fd, rbuf, BUFF_SIZE)))
 	{
-        if ((retflag = gnl_part2(line, rbl, rbuf)) != -42)
+		if ((retflag = gnl_part2(line, rbl, rbuf)) != -42)
 			return (retflag);
 		if ((ssize_t)(ln = ft_linelen(rbuf)) != rbl)
 		{
 			if ((ssize_t)ln + 1 != rbl)
-            	if (!(fdl = static_store(rbuf + ln + 1, fd, fdl)))
-               	 return (-1);
+				if (!(fdl = static_store(rbuf + ln + 1, fd, fdl)))
+					return (-1);
 			return (1);
 		}
-    }
+	}
 	if (*line)
-        return (1);
+		return (1);
 	return (0);
 }

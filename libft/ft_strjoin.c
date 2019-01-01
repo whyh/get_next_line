@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
 char			*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
@@ -19,11 +19,11 @@ char			*ft_strjoin(char const *s1, char const *s2)
 
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
-    i = ft_strlen(s1) + ft_strlen(s2);
-    ++i;
-    if (!(str = (char *)malloc((i) * sizeof(char))))
-	    return (NULL);
-    ft_strcpy(str, s1);
-    ft_strcat(str, s2);
-    return (str);
+	i = ft_strlen(s1) + ft_strlen(s2);
+	++i;
+	if (!(str = (char *)malloc((i) * sizeof(char))))
+		return (NULL);
+	ft_strcpy(str, s1);
+	ft_strcat(str, s2);
+	return (str);
 }
