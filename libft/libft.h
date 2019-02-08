@@ -6,7 +6,7 @@
 /*   By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 16:10:22 by dderevyn          #+#    #+#             */
-/*   Updated: 2019/02/08 19:30:11 by dderevyn         ###   ########.fr       */
+/*   Updated: 2019/02/08 19:39:34 by dderevyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char		*ft_strndup(const char *src, long n);
 int			ft_strncmp(char const *str1, char const *str2, long n);
 char		*ft_strnew(size_t size);
 void		ft_strninject(char **dst, const char *src, long pos, long n);
-char		*ft_strntrim(char **str, long long len);
 char		*ft_strrchr(const char *str, char c);
 
 #endif

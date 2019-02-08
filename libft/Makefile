@@ -6,7 +6,7 @@
 #    By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/31 16:17:42 by dderevyn          #+#    #+#              #
-#    Updated: 2019/02/06 21:34:32 by dderevyn         ###   ########.fr        #
+#    Updated: 2019/02/08 19:39:34 by dderevyn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ SRCS = 	ft_atoibase.c\
 		ft_strncmp.c\
 		ft_strnew.c\
 		ft_strninject.c\
-		ft_strntrim.c\
 		ft_strrchr.c
 
 OBJS_DIR = .libft_objects
