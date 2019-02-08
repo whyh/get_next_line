@@ -1,3 +1,0 @@
-/Users/dderevyn/CLionProjects/GetNextLine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/dderevyn/CLionProjects/GetNextLine/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/dderevyn/CLionProjects/GetNextLine/cmake-build-debug/CMakeFiles/GetNextLine.dir

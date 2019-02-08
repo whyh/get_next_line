@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 18:23:34 by dderevyn          #+#    #+#             */
-/*   Updated: 2019/02/06 20:01:06 by dderevyn         ###   ########.fr       */
+/*   Created: 2019/02/06 18:57:30 by dderevyn          #+#    #+#             */
+/*   Updated: 2019/02/06 19:07:19 by dderevyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, char c)
+size_t	ft_nbrlen(long long nbr, size_t base)
 {
-	const unsigned char	*ustr;
-	unsigned char		uc;
-	size_t				i;
+	size_t	len;
 
-	ustr = (CUC*)str;
-	uc = (UC)c;
-	i = ft_strlen((char*)ustr);
-	while (i > 0)
+	len = 1;
+	if (nbr < 0)
 	{
-		if (ustr[i] == uc)
-			return ((char*)(&(ustr[i])));
-		--i;
+		nbr = -nbr;
+		++len;
 	}
-	if (ustr[i] == uc)
-		return ((char*)(&(ustr[i])));
-	return (NULL);
+	while (nbr / base > 0)
+	{
+		nbr = (LL)(nbr / base);
+		++len;
+	}
+	return (len);
+}
+
+size_t	ft_unbrlen(unsigned long long nbr, size_t base)
+{
+	size_t	len;
+
+	len = 1;
+	while (nbr / base > 0)
+	{
+		nbr = nbr / base;
+		++len;
+	}
+	return (len);
 }

@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strin.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 18:23:34 by dderevyn          #+#    #+#             */
-/*   Updated: 2019/02/06 20:01:06 by dderevyn         ###   ########.fr       */
+/*   Created: 2018/11/16 14:32:07 by dderevyn          #+#    #+#             */
+/*   Updated: 2019/02/06 19:55:25 by dderevyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, char c)
+int	ft_strin(const char *str, char c)
 {
-	const unsigned char	*ustr;
-	unsigned char		uc;
-	size_t				i;
+	size_t	i;
 
-	ustr = (CUC*)str;
-	uc = (UC)c;
-	i = ft_strlen((char*)ustr);
-	while (i > 0)
+	i = 0;
+	while (str[i])
 	{
-		if (ustr[i] == uc)
-			return ((char*)(&(ustr[i])));
-		--i;
+		if (str[i] == c)
+			return (1);
+		++i;
 	}
-	if (ustr[i] == uc)
-		return ((char*)(&(ustr[i])));
-	return (NULL);
+	return (0);
 }

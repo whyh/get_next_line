@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strninject.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 16:14:59 by dderevyn          #+#    #+#             */
-/*   Updated: 2019/02/06 19:55:25 by dderevyn         ###   ########.fr       */
+/*   Created: 2019/01/16 18:03:22 by dderevyn          #+#    #+#             */
+/*   Updated: 2019/02/06 18:36:26 by dderevyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, long n)
+void	ft_strninject(char **dst, const char *src, long pos, long n)
 {
-	long	i;
+	char	*head;
+	char	*tail;
+	char	*inj;
+	char	*tmp;
 
-	i = 0;
+	if (pos < 0)
+		pos = ft_strlen(*dst);
 	if (n < 0)
 		n = ft_strlen(src);
-	while (i < n && src[i])
-	{
-		dst[i] = src[i];
-		++i;
-	}
-	while (i <= n)
-	{
-		dst[i] = '\0';
-		++i;
-	}
-	return (dst);
+	head = ft_strndup(*dst, pos);
+	tail = ft_strndup(&((*dst)[pos]), -1);
+	inj = ft_strndup(src, n);
+	ft_strdel(dst);
+	tmp = ft_strjoin(head, inj);
+	ft_strdel(&head);
+	ft_strdel(&inj);
+	*dst = ft_strjoin(tmp, tail);
+	ft_strdel(&tmp);
+	ft_strdel(&tail);
 }

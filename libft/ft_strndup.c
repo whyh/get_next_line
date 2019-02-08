@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 18:23:34 by dderevyn          #+#    #+#             */
-/*   Updated: 2019/02/06 20:01:06 by dderevyn         ###   ########.fr       */
+/*   Created: 2018/10/29 15:25:16 by dderevyn          #+#    #+#             */
+/*   Updated: 2019/02/06 18:05:37 by dderevyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, char c)
+char	*ft_strndup(const char *src, long n)
 {
-	const unsigned char	*ustr;
-	unsigned char		uc;
-	size_t				i;
+	char	*dst;
 
-	ustr = (CUC*)str;
-	uc = (UC)c;
-	i = ft_strlen((char*)ustr);
-	while (i > 0)
-	{
-		if (ustr[i] == uc)
-			return ((char*)(&(ustr[i])));
-		--i;
-	}
-	if (ustr[i] == uc)
-		return ((char*)(&(ustr[i])));
-	return (NULL);
+	if (n < 0)
+		n = ft_strlen(src);
+	if (!(dst = ft_strnew((size_t)n)))
+		return (NULL);
+	dst = ft_strncpy(dst, src, n);
+	return (dst);
 }

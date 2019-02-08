@@ -6,7 +6,7 @@
 /*   By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 16:29:55 by dderevyn          #+#    #+#             */
-/*   Updated: 2018/12/07 16:08:07 by dderevyn         ###   ########.fr       */
+/*   Updated: 2019/02/08 21:13:59 by dderevyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,23 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-typedef struct		s_fd
+typedef struct				s_gnl_list
 {
-	int				fd;
-	char			*content;
-	struct s_fd		*next;
-}					t_fd;
+	int						fd;
+	char					*content;
+	struct s_gnl_list		*next;
+}							t_gnl_list;
 
-int					get_next_line(const int fd, char **line);
+typedef struct				s_gnl_data
+{
+	t_gnl_list				*node;
+	char					rbuff[BUFF_SIZE + 1];
+	ssize_t					rlen;
+	ssize_t					len;
+	char					*tmp;
+	int						ret_flag;
+}							t_gnl_data;
+
+int							get_next_line(const int fd, char **line);
 
 #endif
