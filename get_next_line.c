@@ -6,19 +6,19 @@
 /*   By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 16:25:21 by dderevyn          #+#    #+#             */
-/*   Updated: 2019/02/08 21:13:59 by dderevyn         ###   ########.fr       */
+/*   Updated: 2019/02/08 21:41:35 by dderevyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int		static_del(t_gnl_list *node, t_gnl_list **head)
+static int		gnl_del(t_gnl_list *node, t_gnl_list **head)
 {
 	t_gnl_list	*tmp;
 
 	if (*head == node)
 	{
-		ft_strdel(&((*head)->content));
+		ft_strdel(&((*head)->buff));
 		(*head)->fd = -1;
 		return (1);
 	}
@@ -26,13 +26,13 @@ static int		static_del(t_gnl_list *node, t_gnl_list **head)
 	while (tmp->next != node)
 		tmp = tmp->next;
 	tmp->next = node->next;
-	if (node->content)
-		ft_strdel(&(node->content));
+	if (node->buff)
+		ft_strdel(&(node->buff));
 	ft_memdel((void**)&node);
 	return (1);
 }
 
-static int		static_valid_n_pull(t_gnl_list **head, char **line, int fd)
+static int		gnl_valid_n_pull(t_gnl_list **head, char **line, int fd)
 {
 	t_gnl_data	data;
 
@@ -44,16 +44,16 @@ static int		static_valid_n_pull(t_gnl_list **head, char **line, int fd)
 		data.node = data.node->next;
 	if (data.node == NULL)
 		return (2);
-	data.len = ft_strchr_i(data.node->content, '\n');
-	ft_strninject(line, data.node->content, -1, data.len);
-	if (data.node->content[data.len] == '\0' && static_del(data.node, head))
+	data.len = ft_strchr_i(data.node->buff, '\n');
+	ft_strninject(line, data.node->buff, -1, data.len);
+	if (data.node->buff[data.len] == '\0' && gnl_del(data.node, head))
 		return (2);
-	if (data.node->content[data.len] == '\n'
-	&& data.node->content[data.len + 1] == '\0' && static_del(data.node, head))
+	if (data.node->buff[data.len] == '\n'
+	&& data.node->buff[data.len + 1] == '\0' && gnl_del(data.node, head))
 		return (1);
-	data.tmp = ft_strndup(&(data.node->content[data.len + 1]), -1);
-	ft_strdel(&(data.node->content));
-	data.node->content = data.tmp;
+	data.tmp = ft_strndup(&(data.node->buff[data.len + 1]), -1);
+	ft_strdel(&(data.node->buff));
+	data.node->buff = data.tmp;
 	return (1);
 }
 
@@ -62,7 +62,7 @@ int				get_next_line(const int fd, char **line)
 	static t_gnl_list	*fdl;
 	t_gnl_data			data;
 
-	if ((data.ret_flag = static_valid_n_pull(&fdl, line, fd)) != 2)
+	if ((data.ret_flag = gnl_valid_n_pull(&fdl, line, fd)) != 2)
 		return (data.ret_flag);
 	while ((data.rlen = read(fd, data.rbuff, BUFF_SIZE)) > 0)
 	{
@@ -72,7 +72,7 @@ int				get_next_line(const int fd, char **line)
 		if (data.len != data.rlen && data.len + 1 != data.rlen)
 		{
 			data.node = (t_gnl_list*)malloc(sizeof(t_gnl_list));
-			data.node->content = ft_strndup(&(data.rbuff[data.len + 1]), -1);
+			data.node->buff = ft_strndup(&(data.rbuff[data.len + 1]), -1);
 			data.node->fd = fd;
 			data.node->next = fdl;
 			fdl = data.node;

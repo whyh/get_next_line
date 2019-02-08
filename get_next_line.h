@@ -6,7 +6,7 @@
 /*   By: dderevyn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 16:29:55 by dderevyn          #+#    #+#             */
-/*   Updated: 2019/02/08 21:13:59 by dderevyn         ###   ########.fr       */
+/*   Updated: 2019/02/08 21:17:50 by dderevyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct				s_gnl_list
 {
 	int						fd;
-	char					*content;
+	char					*buff;
 	struct s_gnl_list		*next;
 }							t_gnl_list;
 
