@@ -5,7 +5,7 @@ An appoinment was to create function
 ```c
 int    get_next_line(int fd, char **line);
 ```
-, that will read from file specified with `fd` and save to `*line` exactly one line, leaving the rest in buffer, if it read more. So the amount of symbols to be read wit hone call of function `read` is specified with define [BUFF_SIZE](get_next_line.h). Seems not complicated at all, right? Well, it was until restrictions and edge cases. I was only able to use next standard C library functions
+that will read from file specified with `fd` and save to `*line` exactly one line, leaving the rest in buffer, if it read more. So the amount of symbols to be read wit hone call of function `read` is specified with define [BUFF_SIZE](get_next_line.h). Seems not complicated at all, right? Well, it was until restrictions and edge cases. I was only able to use next standard C library functions
 ```c
 ssize_t read(int fd, void *buf, size_t count);
 void    *malloc(size_t size);
